@@ -1,0 +1,45 @@
+{
+  "name": "jev-domain-auctions",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Find underpriced GoDaddy expiry domains with deterministic market signals and TypeSafe JEV judgments.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/catorch/jev-domain-auctions.git"
+  },
+  "bugs": {
+    "url": "https://github.com/catorch/jev-domain-auctions/issues"
+  },
+  "homepage": "https://github.com/catorch/jev-domain-auctions#readme",
+  "keywords": [
+    "domain-investing",
+    "godaddy-auctions",
+    "jev",
+    "typesafe-ai"
+  ],
+  "engines": {
+    "node": ">=22.12"
+  },
+  "type": "module",
+  "scripts": {
+    "scan": "tsx src/cli.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@typesafe-ai/sdk": "^0.6.0",
+    "commander": "^14.0.1",
+    "dotenv": "^17.2.2",
+    "stream-json": "^3.6.0",
+    "unzipper": "^0.12.3",
+    "zod": "^4.1.11"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "@types/unzipper": "^0.10.11",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2",
+    "vitest": "^5.0.1"
+  }
+}

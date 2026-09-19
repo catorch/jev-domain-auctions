@@ -1,0 +1,17 @@
+node_modules/
+dist/
+coverage/
+
+.env
+.env.*
+!.env.example
+
+.cache/
+reports/
+*.zip
+*.log
+.DS_Store
+
+# Local agent tooling, not application dependencies.
+.agents/
+skills-lock.json

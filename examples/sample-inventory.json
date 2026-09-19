@@ -1,0 +1,59 @@
+{
+  "meta": { "title": "Synthetic development fixture" },
+  "data": [
+    {
+      "domainName": "NORTHPEAK.COM",
+      "link": "https://example.invalid/northpeak",
+      "auctionType": "BuyNow",
+      "auctionEndTime": "2026-09-20T16:00:00Z",
+      "price": "$80",
+      "numberOfBids": 0,
+      "domainAge": 14,
+      "pageviews": 18,
+      "valuation": "$2,400",
+      "isAdult": false,
+      "majesticTf": 12,
+      "majesticReferringDomains": 26,
+      "exactMatchTlds": 12,
+      "keywordRegistrations": 820,
+      "developedTlds": 7,
+      "semrushAs": 10,
+      "semrushSearchVolume": 720,
+      "semrushCpc": 2.4
+    },
+    {
+      "domainName": "CLEARLEDGER.IO",
+      "link": "https://example.invalid/clearledger",
+      "auctionType": "Bid",
+      "auctionEndTime": "2026-09-21T16:00:00Z",
+      "price": "$120",
+      "numberOfBids": 1,
+      "domainAge": 7,
+      "valuation": "$1,900",
+      "isAdult": false,
+      "majesticTf": 5,
+      "majesticReferringDomains": 10,
+      "exactMatchTlds": 8,
+      "keywordRegistrations": 530,
+      "developedTlds": 5,
+      "semrushAs": 8,
+      "semrushSearchVolume": 390,
+      "semrushCpc": 6.2
+    },
+    {
+      "domainName": "XQZ-778.NET",
+      "auctionType": "BuyNow",
+      "price": "$5",
+      "valuation": "$10",
+      "isAdult": false,
+      "semrushSearchVolume": 0
+    },
+    {
+      "domainName": "TOOEXPENSIVE.COM",
+      "auctionType": "BuyNow",
+      "price": "$5,000",
+      "valuation": "$5,100",
+      "isAdult": false
+    }
+  ]
+}
