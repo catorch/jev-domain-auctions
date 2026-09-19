@@ -14,7 +14,7 @@ describe("listing normalization", () => {
 });
 
 describe("deterministic screening", () => {
-  const options = { maxPriceUsd: 500, maxLength: 18, tlds: new Set(["com"]) };
+  const options = { maxPriceUsd: 500, minSearchVolume: 0, maxLength: 18, tlds: new Set(["com"]) };
 
   it("applies budget, TLD, adult, and name filters", () => {
     const good = normalizeListing({ domainName: "northpeak.com", price: "$80" })!;
@@ -22,6 +22,12 @@ describe("deterministic screening", () => {
     expect(passesHardFilters({ ...good, priceUsd: 501 }, options)).toBe(false);
     expect(passesHardFilters({ ...good, isAdult: true }, options)).toBe(false);
     expect(passesHardFilters({ ...good, tld: "xyz" }, options)).toBe(false);
+  });
+
+  it("enforces minimum Semrush search volume", () => {
+    const listing = normalizeListing({ domainName: "northpeak.com", price: "$80", semrushSearchVolume: 99 })!;
+    expect(passesHardFilters(listing, { ...options, minSearchVolume: 100 })).toBe(false);
+    expect(passesHardFilters({ ...listing, searchVolume: 100 }, { ...options, minSearchVolume: 100 })).toBe(true);
   });
 
   it("rewards a stronger price-to-valuation gap", () => {

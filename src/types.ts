@@ -93,6 +93,7 @@ export interface Candidate {
 
 export interface ScanOptions {
   maxPriceUsd: number;
+  minSearchVolume: number;
   maxLength: number;
   tlds: Set<string>;
   prefilter: number;

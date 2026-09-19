@@ -13,6 +13,7 @@ interface CliOptions {
   input?: string;
   feed: string;
   maxPrice: string;
+  minSearchVolume: string;
   maxLength: string;
   tlds: string;
   prefilter: string;
@@ -30,6 +31,7 @@ const program = new Command()
   .option("--input <path>", "local GoDaddy JSON or JSON.ZIP file instead of downloading")
   .option("--feed <name>", "inventory feed to download", "closeout_listings.json.zip")
   .option("--max-price <usd>", "maximum listing price", "500")
+  .option("--min-search-volume <count>", "minimum monthly Semrush search volume", "0")
   .option("--max-length <chars>", "maximum second-level name length", "18")
   .option("--tlds <list>", "comma-separated allowed TLDs", "com,ai,io,co,net,org")
   .option("--prefilter <count>", "candidates sent to JEV", "40")
@@ -44,6 +46,7 @@ const program = new Command()
 const cli = program.opts<CliOptions>();
 const options: ScanOptions = {
   maxPriceUsd: Number(cli.maxPrice),
+  minSearchVolume: Number(cli.minSearchVolume),
   maxLength: Number(cli.maxLength),
   tlds: new Set(cli.tlds.split(",").map((value) => value.trim().toLowerCase()).filter(Boolean)),
   prefilter: Number(cli.prefilter),
@@ -54,7 +57,14 @@ const options: ScanOptions = {
 };
 
 for (const [name, value] of Object.entries(options)) {
-  if (typeof value === "number" && (!Number.isFinite(value) || value <= 0)) throw new Error(`Invalid --${name}: ${value}`);
+  if (typeof value === "number" && !Number.isFinite(value)) throw new Error(`Invalid --${name}: ${value}`);
+}
+if (options.maxPriceUsd <= 0 || options.maxLength <= 0 || options.prefilter <= 0 || options.top <= 0) {
+  throw new Error("Price, length, prefilter, and top values must be positive");
+}
+if (options.minSearchVolume < 0) throw new Error("--min-search-volume cannot be negative");
+if (options.minJevConfidence <= 0 || options.minJevConfidence > 1) {
+  throw new Error("--min-jev-confidence must be greater than 0 and at most 1");
 }
 if (options.useJev && !process.env.TYPESAFE_API_KEY) {
   throw new Error("TYPESAFE_API_KEY is required unless --no-jev is used");

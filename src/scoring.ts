@@ -5,12 +5,13 @@ const logScore = (value: number, ceiling: number) => clamp((Math.log1p(value) / 
 
 export function passesHardFilters(
   listing: Listing,
-  options: { maxPriceUsd: number; maxLength: number; tlds: Set<string> },
+  options: { maxPriceUsd: number; minSearchVolume: number; maxLength: number; tlds: Set<string> },
 ): boolean {
   return (
     !listing.isAdult &&
     listing.priceUsd > 0 &&
     listing.priceUsd <= options.maxPriceUsd &&
+    listing.searchVolume >= options.minSearchVolume &&
     listing.sld.length <= options.maxLength &&
     options.tlds.has(listing.tld) &&
     /^[a-z0-9-]+$/.test(listing.sld)
