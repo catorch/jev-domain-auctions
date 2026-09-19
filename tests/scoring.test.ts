@@ -24,6 +24,12 @@ describe("deterministic screening", () => {
     expect(passesHardFilters({ ...good, tld: "xyz" }, options)).toBe(false);
   });
 
+  it("supports an exclusive minimum Semrush Authority Score", () => {
+    const listing = normalizeListing({ domainName: "northpeak.com", price: "$80", semrushAs: 5 })!;
+    expect(passesHardFilters(listing, { ...options, minAuthorityScore: 5 })).toBe(false);
+    expect(passesHardFilters({ ...listing, semrushAuthority: 6 }, { ...options, minAuthorityScore: 5 })).toBe(true);
+  });
+
   it("rewards a stronger price-to-valuation gap", () => {
     const base = normalizeListing({ domainName: "northpeak.com", price: "$100", valuation: "$200" })!;
     const bargain = { ...base, valuationUsd: 2_000 };

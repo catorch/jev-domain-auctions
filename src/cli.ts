@@ -13,6 +13,7 @@ interface CliOptions {
   input?: string;
   feed: string;
   maxPrice: string;
+  minAuthorityScore?: string;
   maxLength: string;
   tlds: string;
   prefilter: string;
@@ -30,6 +31,7 @@ const program = new Command()
   .option("--input <path>", "local GoDaddy JSON or JSON.ZIP file instead of downloading")
   .option("--feed <name>", "inventory feed to download", "closeout_listings.json.zip")
   .option("--max-price <usd>", "maximum listing price", "500")
+  .option("--min-authority-score <score>", "require Semrush Authority Score greater than this value")
   .option("--max-length <chars>", "maximum second-level name length", "18")
   .option("--tlds <list>", "comma-separated allowed TLDs", "com,ai,io,co,net,org")
   .option("--prefilter <count>", "candidates sent to JEV", "40")
@@ -44,6 +46,7 @@ const program = new Command()
 const cli = program.opts<CliOptions>();
 const options: ScanOptions = {
   maxPriceUsd: Number(cli.maxPrice),
+  minAuthorityScore: cli.minAuthorityScore === undefined ? undefined : Number(cli.minAuthorityScore),
   maxLength: Number(cli.maxLength),
   tlds: new Set(cli.tlds.split(",").map((value) => value.trim().toLowerCase()).filter(Boolean)),
   prefilter: Number(cli.prefilter),

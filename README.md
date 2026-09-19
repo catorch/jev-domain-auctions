@@ -48,6 +48,12 @@ npm run scan -- --feed closeout_listings.json.zip --max-price 500 --prefilter 40
 
 Use `--limit 10000` while tuning. Other useful controls are `--tlds com,ai,io`, `--max-length 15`, `--min-jev-confidence 0.6`, and `--output reports`.
 
+Require a Semrush Authority Score above 5 while staying below $50:
+
+```bash
+npm run scan -- --max-price 49.99 --min-authority-score 5 --prefilter 40 --top 20 --verify
+```
+
 ## Safety and calibration
 
 - There is deliberately no bid or purchase endpoint in this project.
