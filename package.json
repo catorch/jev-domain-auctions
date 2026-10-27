@@ -31,7 +31,7 @@
     "@typesafe-ai/sdk": "^0.6.0",
     "commander": "^14.0.1",
     "dotenv": "^17.2.2",
-    "stream-json": "^3.6.0",
+    "stream-json": "^3.7.0",
     "unzipper": "^0.12.3",
     "zod": "^4.1.11"
   },
