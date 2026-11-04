@@ -33,7 +33,7 @@
     "dotenv": "^17.2.2",
     "stream-json": "^3.6.0",
     "unzipper": "^0.12.3",
-    "zod": "^4.1.11"
+    "zod": "^4.6.6"
   },
   "devDependencies": {
     "@types/node": "^24.5.2",
